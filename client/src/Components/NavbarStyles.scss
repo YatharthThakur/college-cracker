@@ -1,0 +1,11 @@
+nav{
+    // border: 2px solid red;
+    max-width: 1120px;
+    margin: 0 auto;  //top and bottom as 0, left and right as auto
+    height: 8rem;
+    display: flex;
+    img{
+        height: 70px;
+        cursor: pointer;
+    }
+}
