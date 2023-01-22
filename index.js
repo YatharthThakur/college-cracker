@@ -16,7 +16,7 @@ app.use(express.json());
 app.use("/api/user", userRoutes);
 app.use("/api/college", collegeRoutes);
 
-app.use(express.static(path.join(__dirname, "./client/build")));
+app.use(express.static(path.join(__dirname, '../client/build')));
 app.get("*", function (_, res) {
   res.sendFile(
     path.join(__dirname, "./client/build/index.html"),
