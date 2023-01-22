@@ -1,34 +1,3 @@
-// // Express server
-// // Step1: import express
-// const { json } = require('express');
-// const express = require('express');
-// const path = require("path");
-// // Step2: make a object out of it
-// const app = express();
-
-// // Step 3: import mongoose and create database
-// const mongoose = require('mongoose');
-// mongoose.connect('mongodb://127.0.0.1:27017/users');
-
-// // Api body can pass everything in JSON format
-// app.use(express.json());
-
-// // Step 4: 
-// const userRoutes = require("./routes/userRouter");
-// const collegeRoutes = require("./routes/collegeRoutes")
-// app.use("/api/user",userRoutes);
-// app.use("/api/college",collegeRoutes);
-// app.use(express.static(path.join(__dirname, "../client/build")));
-// app.get("*", function (req, res) {
-//     res.sendFile(path.join(__dirname, "../client/build", "index.html"));
-//   });
-
-// // listen on port 5000
-// app.listen(5000, ()=>{
-//     console.log("Server is listing on port 5000");
-// })
-
-
 const express = require("express");
 const path = require("path");
 
@@ -46,6 +15,18 @@ app.use(express.static(path.join(__dirname, "client/build")));
 app.use(express.json());
 app.use("/api/user", userRoutes);
 app.use("/api/college", collegeRoutes);
+
+app.use(express.static(path.join(__dirname, "./frontend/build")));
+app.get("*", function (_, res) {
+  res.sendFile(
+    path.join(__dirname, "./frontend/build/index.html"),
+    function (err) {
+      if (err) {
+        res.status(500).send(err);
+      }
+    }
+  );
+});
 
 app.get("*", function (req, res) {
   res.sendFile(path.join(__dirname, "client/build", "index.html"));
